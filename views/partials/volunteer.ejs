@@ -1,0 +1,124 @@
+<div class="validate-form-container" style="text-align: center">
+  <form id="emailValidationForm" action="/verify-email" method="post">
+    <h3>Verify your email to log volunteer hours</h3>
+    <div class="mb-1">
+      <input
+        type="email"
+        id="validationEmail"
+        autocomplete="email"
+        name="validationEmail"
+        required
+      />
+    </div>
+    <button class="btn btn-primary btn-md mb-2" type="submit">Verify</button>
+  </form>
+  <% if (locals.verifyNoti) { %> 
+    <% if (volunteerVerified === "true") { %>
+      <div class="alert alert-success mt-2" role="alert"><%= verifyNoti %></div>
+    <% } %> 
+    <% if (volunteerVerified === "false") { %>
+      <div class="alert alert-danger mt-2" role="alert"><%= verifyNoti %></div>
+    <% } %> 
+  <% } %>
+</div>
+<% if (volunteerVerified === "true") { %>
+<div class="retrieved-info-container">
+  <div class="row">
+    <% if (locals.fName) { %>
+    <div class="col-6">
+      <h5>First Name</h5>
+      <p><%= fName %></p>
+    </div>
+    <% } %> <% if (locals.lName) { %>
+    <div class="col-6">
+      <h5>Last Name</h5>
+      <p><%= lName %></p>
+    </div>
+    <% } %>
+  </div>
+  <div class="row">
+    <% if (locals.userEmail) { %>
+    <h5>Email</h5>
+    <p><%= userEmail %></p>
+    <% } %>
+  </div>
+  <div class="row">
+    <% if (locals.phoneNum) { %>
+    <h5>Phone number</h5>
+    <p><%= phoneNum %></p>
+    <% } %>
+  </div>
+  <form action="" method="post" class="record-form">
+    <div class="row">
+      <div class="col-6">
+        <h5>Date</h5>
+        <input type="date" name="dateInput" id="dateInput" />
+      </div>
+      <div class="col-6">
+        <h5>Hours</h5>
+        <input
+          type="number"
+          name="numberInput"
+          id="numberInput"
+          style="width: 70%"
+          required
+        />
+      </div>
+    </div>
+    <div class="row my-2">
+      <div class="col-12 d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary">Confirm Log</button>
+      </div>
+    </div>
+  </form>
+</div>
+<% } %>
+
+<!---->
+<% if (volunteerVerified !== "true") { %>
+<div style="display: flex; align-items: center">
+  <span id="form-break-line">
+    <h5 style="display: inline">or</h5>
+  </span>
+</div>
+<!---->
+<div class="register-form-container">
+  <h3>Register</h3>
+  <h5 style="font-weight: lighter">if you are a new volunteer</h5>
+  <!---->
+  <% if (locals.registerNotiFail) { %>
+  <div class="alert alert-danger" role="alert"><%= registerNotiFail %></div>
+  <% } %>
+  <% if (locals.registerNotiSuccess) { %>
+    <div class="alert alert-success" role="alert"><%= registerNotiSuccess %></div>
+  <% } %>
+  <!---->
+  <form id="registerForm" action="/register-volunteer" method="post">
+    <div class="mb-1">
+      <label for="regfName">First Name:</label>
+      <input type="text" id="regfName" name="regfName" required />
+    </div>
+    <div class="mb-1">
+      <label for="lName">Last Name:</label>
+      <input type="text" id="reglName" name="reglName" required />
+    </div>
+    <div class="mb-1">
+      <label for="regemail">Email address:</label>
+      <input type="email" id="regemail" name="regemail" required />
+    </div>
+    <div class="mb-1">
+      <label for="regphone">Phone Number:</label>
+      <input
+        type="tel"
+        id="regphone"
+        name="regphone"
+        placeholder="Format: 123-456-7890"
+        style="width: 60%"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-secondary mb-2">Register</button>
+  </form>
+</div>
+<% } %>

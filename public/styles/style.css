@@ -1,0 +1,69 @@
+.side-items a {
+    font-size: 30px;
+}
+
+.question-box textarea {
+    width: 100%;
+    height: 150px; 
+}
+  
+.question-box label{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.answer{
+    margin-left: 20px;
+}
+
+.question{
+    color: blue;
+}
+.validate-form-container,
+.register-form-container,
+.retrieved-info-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 2% 2% 0 2%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for form headings */
+.validate-form-container h3,
+.register-form-container h3,
+.validate-form-container h5,
+.register-form-container h5  {
+  color: #333;
+  text-align: center;
+}
+
+/* Style for form labels */
+.validate-form-container label,
+.register-form-container label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* Style for form inputs */
+.validate-form-container input,
+.register-form-container input,
+.record-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  box-sizing: border-box;
+}
+#form-break-line{
+    text-align: center;
+    width: 100%;
+    font-size: x-large;
+}
+#form-break-line:after,
+#form-break-line:before{
+    content:"\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0";
+    text-decoration:line-through;
+}
