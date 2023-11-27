@@ -21,12 +21,6 @@ const volunteer_table_id = "tbl82O3e0cUbzMOxp";
 const airtableEndpoint = `https://api.airtable.com/v0/${baseId}/${volunteer_table_id}`;
 
 var volunteerVerified = "undefined";
-// var Airtable = require("airtable");
-// Airtable.configure({
-//   endpointUrl: "https://api.airtable.com",
-//   apiKey: token_key,
-// });
-// var base = Airtable.base(baseId);
 
 app.post("/verify-email", async (req, res) => {
   const email_to_validate = req.body.validationEmail;
@@ -67,6 +61,8 @@ app.post("/verify-email", async (req, res) => {
         lName: records[0].fields["Last Name"],
         userEmail: records[0].fields["Email"],
         phoneNum: records[0].fields["Phone number"],
+        volHour: records[0].fields["Total hours volunteered"],
+        volunteerId: records[0].id,
         verifyNoti: "Email has been verified!",
       });
     }
@@ -91,6 +87,40 @@ app.get("/volunteer", (req, res) => {
     volunteerVerified: "undefined",
   });
 });
+
+app.post("/log-volunteer-time", async(req, res) => {
+  console.log(req.body);
+  try {
+    const response = await axios.patch(
+      airtableEndpoint,
+      {
+        records: [
+          {
+            "id": req.body.volunteerId,
+            "fields": {
+              "Total hours volunteered": parseInt(req.body.hourInput, 10)+parseInt(req.body.volHour, 10),
+            }
+          }
+        ]
+      },
+      {
+        headers: {
+          "Authorization": `Bearer ${token_key}`,
+          "Content-Type": "application/json",
+        },
+      },
+    )
+    console.log("Record Updated***");
+    res.render("index.ejs",
+    {
+      pageContent: "volunteer",
+      volunteerVerified: "true",
+      verifyNoti: "Volunter hours successfully updated"
+    })
+  } catch (error) {
+    console.log(error.message);
+  }
+})
 
 app.post("/register-volunteer", async (req, res) => {
   console.log("***Register Post Request***");

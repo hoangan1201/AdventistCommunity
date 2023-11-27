@@ -12,14 +12,11 @@
     </div>
     <button class="btn btn-primary btn-md mb-2" type="submit">Verify</button>
   </form>
-  <% if (locals.verifyNoti) { %> 
-    <% if (volunteerVerified === "true") { %>
-      <div class="alert alert-success mt-2" role="alert"><%= verifyNoti %></div>
-    <% } %> 
-    <% if (volunteerVerified === "false") { %>
-      <div class="alert alert-danger mt-2" role="alert"><%= verifyNoti %></div>
-    <% } %> 
-  <% } %>
+  <% if (locals.verifyNoti) { %> <% if (volunteerVerified === "true") { %>
+  <div class="alert alert-success mt-2" role="alert"><%= verifyNoti %></div>
+  <% } %> <% if (volunteerVerified === "false") { %>
+  <div class="alert alert-danger mt-2" role="alert"><%= verifyNoti %></div>
+  <% } %> <% } %>
 </div>
 <% if (volunteerVerified === "true") { %>
 <div class="retrieved-info-container">
@@ -48,18 +45,29 @@
     <p><%= phoneNum %></p>
     <% } %>
   </div>
-  <form action="" method="post" class="record-form">
+  <% if (locals.volunteerId) { %>
+  <form action="/log-volunteer-time" method="post" class="record-form">
+    <div class="row">
+      <input type="hidden" name="volunteerId" value="<%= volunteerId %>" />
+    </div>
+
+    <% if (locals.volHour) { %>
+    <div class="row">
+      <input type="hidden" name="volHour" value="<%= volHour %>" />
+    </div>
+    <% } %>
+
     <div class="row">
       <div class="col-6">
         <h5>Date</h5>
-        <input type="date" name="dateInput" id="dateInput" />
+        <input type="date" name="dateInput" id="dateInput" required />
       </div>
       <div class="col-6">
         <h5>Hours</h5>
         <input
           type="number"
-          name="numberInput"
-          id="numberInput"
+          name="hourInput"
+          id="hourInput"
           style="width: 70%"
           required
         />
@@ -71,6 +79,7 @@
       </div>
     </div>
   </form>
+  <% } %>
 </div>
 <% } %>
 
@@ -88,9 +97,8 @@
   <!---->
   <% if (locals.registerNotiFail) { %>
   <div class="alert alert-danger" role="alert"><%= registerNotiFail %></div>
-  <% } %>
-  <% if (locals.registerNotiSuccess) { %>
-    <div class="alert alert-success" role="alert"><%= registerNotiSuccess %></div>
+  <% } %> <% if (locals.registerNotiSuccess) { %>
+  <div class="alert alert-success" role="alert"><%= registerNotiSuccess %></div>
   <% } %>
   <!---->
   <form id="registerForm" action="/register-volunteer" method="post">
