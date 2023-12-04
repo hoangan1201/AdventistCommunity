@@ -1,3 +1,7 @@
+body{
+  background-color: #e6e6e6;
+}
+
 .side-items a {
     font-size: 30px;
 }
@@ -10,6 +14,20 @@
 .question-box label{
     font-size: 20px;
     font-weight: bold;
+}
+
+#carouselExampleCaptions {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  border-radius: 1%;
+}
+
+.carousel-item img {
+  height: 400px; 
+  object-fit: cover; 
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+  filter: invert(1); 
 }
 
 .answer{
