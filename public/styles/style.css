@@ -1,10 +1,39 @@
 body{
-  background-color: #e6e6e6;
+  background-color: #F5F5F5;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.side-links-container{
+  background-color: #d9d9d9;
+  border-top: 5px solid #85a3e0;
+}
+
+.side-links{
+  padding-left: 0;
+  /* background-color: #cccccc; */
+}
+
+.side-bar h2{
+  margin-top: 5px;
+  padding-left: 10px;
 }
 
 .side-items a {
-    font-size: 30px;
+    font-size: 1.5rem;
+    padding-left: 20px;
+    text-decoration: none;
 }
+
+.side-items a:hover {
+  text-decoration: underline;
+  font-size: 1.7rem;
+}
+
+.side-items{
+  border-bottom: 1px solid black; 
+  list-style-type: none;
+}
+
 
 .question-box textarea {
     width: 100%;
@@ -35,8 +64,9 @@ body{
 }
 
 .question{
-    color: blue;
+    color: #3366cc;
 }
+
 .validate-form-container,
 .register-form-container,
 .retrieved-info-container {
@@ -56,6 +86,7 @@ body{
 .register-form-container h5  {
   color: #333;
   text-align: center;
+  font-weight: bold;
 }
 
 /* Style for form labels */
