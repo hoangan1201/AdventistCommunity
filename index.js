@@ -119,6 +119,7 @@ app.post("/log-volunteer-time", async(req, res) => {
     })
   } catch (error) {
     console.log(error.message);
+    res.status(500).send({ error: "Internal server error" });
   }
 })
 
@@ -201,7 +202,9 @@ app.post("/register-volunteer", async (req, res) => {
         });
       }
     }
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).send({ error: "Internal server error" });
+  }
 });
 
 app.listen(port, () => {
